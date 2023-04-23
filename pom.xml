@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ro.unibuc.fmi</groupId>
-    <artifactId>airrliant-core</artifactId>
+    <artifactId>airlliant-core</artifactId>
     <packaging>jar</packaging>
     <name>AirrliantCore</name>
     <version>0.0.1-SNAPSHOT</version>
@@ -139,10 +139,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
@@ -174,11 +170,6 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-maven-plugin</artifactId>
             <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
-            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.uuid</groupId>
