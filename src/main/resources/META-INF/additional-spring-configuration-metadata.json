@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "pgw.baseUrl",
+      "type": "java.lang.String",
+      "description": "Description for pgw.baseUrl."
+    }
+  ]
+}
