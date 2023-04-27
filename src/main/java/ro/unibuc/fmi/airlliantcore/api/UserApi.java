@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ro.unibuc.fmi.airlliantmodel.entity.Ticket;
 import ro.unibuc.fmi.airlliantmodel.entity.User;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiError;
 
@@ -52,7 +53,21 @@ public interface UserApi {
     @DeleteMapping(value = "/users/{id}",
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteUser(@Parameter(description = "id of user that needs to be removed", required = true) @PathVariable("id") Long id);
+    void deleteUser(@Parameter(description = "ID of user that needs to be removed", required = true) @PathVariable("id") Long id);
+
+    @Operation(summary = "Create ticket", operationId = "createTicket", tags = {"Tickets", "Users"})
+    @Parameter(name = "Correlation-Id", description = "Correlation-Id for logging purposes", in = ParameterIn.HEADER, schema = @Schema(type = "string", format = "uuid"))
+    @Parameter(name = "Origin-Application-Name", description = "Application of origin", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    @ApiResponse(responseCode = "201", description = "Successful operation")
+    @ApiResponse(responseCode = "400", description = "Ticket already exists", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ApiError.class))))
+    @PostMapping(value = "/users/{userId}/flights/{flightId}/tickets",
+            produces = {"application/json"},
+            consumes = {"application/json"})
+    @ResponseStatus(HttpStatus.CREATED)
+    void createTicket(@Parameter(description = "Created ticket object", required = true) @Valid @RequestBody Ticket ticket,
+                      @Parameter(description = "ID of user", required = true) @PathVariable("userId") Long userId,
+                      @Parameter(description = "ID of flight", required = true) @PathVariable("flightId") Long flightId
+    );
 
 
 }

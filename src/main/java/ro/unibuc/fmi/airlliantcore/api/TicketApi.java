@@ -15,24 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import ro.unibuc.fmi.airlliantmodel.entity.Ticket;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiError;
 
-import javax.validation.Valid;
-
 
 @Tag(name = "Tickets", description = "the tickets API")
 @Validated
 @RequestMapping(value = "/airlliant/v1")
 public interface TicketApi {
-
-    @Operation(summary = "Create ticket", operationId = "createTicket", tags = {"Tickets"})
-    @Parameter(name = "Correlation-Id", description = "Correlation-Id for logging purposes", in = ParameterIn.HEADER, schema = @Schema(type = "string", format = "uuid"))
-    @Parameter(name = "Origin-Application-Name", description = "Application of origin", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
-    @ApiResponse(responseCode = "201", description = "Successful operation")
-    @ApiResponse(responseCode = "400", description = "Ticket already exists", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ApiError.class))))
-    @PostMapping(value = "/tickets",
-            produces = {"application/json"},
-            consumes = {"application/json"})
-    @ResponseStatus(HttpStatus.CREATED)
-    void createTicket(@Parameter(description = "Created ticket object", required = true) @Valid @RequestBody Ticket ticket);
 
     @Operation(summary = "Get ticket", operationId = "getTicket", tags = {"Tickets"})
     @Parameter(name = "Correlation-Id", description = "Correlation-Id for logging purposes", in = ParameterIn.HEADER, schema = @Schema(type = "string", format = "uuid"))

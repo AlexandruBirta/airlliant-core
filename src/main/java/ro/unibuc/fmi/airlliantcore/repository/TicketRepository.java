@@ -9,4 +9,6 @@ import ro.unibuc.fmi.airlliantmodel.entity.Ticket;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
+    boolean existsTicketBySeat(String seat);
+
 }

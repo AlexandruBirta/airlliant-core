@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ro.unibuc.fmi.airlliantcore.api.UserApi;
+import ro.unibuc.fmi.airlliantcore.service.TicketService;
 import ro.unibuc.fmi.airlliantcore.service.UserService;
+import ro.unibuc.fmi.airlliantmodel.entity.Ticket;
 import ro.unibuc.fmi.airlliantmodel.entity.User;
 
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ import javax.validation.Valid;
 public class UserController implements UserApi {
 
     private final UserService userService;
+    private final TicketService ticketService;
 
     @Override
     public void createUser(@Valid @RequestBody User user) {
@@ -32,5 +35,11 @@ public class UserController implements UserApi {
     public User getUser(@PathVariable("id") Long id) {
         return userService.getUser(id);
     }
+
+    @Override
+    public void createTicket(@Valid @RequestBody Ticket ticket, Long userId, Long flightId) {
+        ticketService.createTicket(ticket, userId, flightId);
+    }
+
 
 }
