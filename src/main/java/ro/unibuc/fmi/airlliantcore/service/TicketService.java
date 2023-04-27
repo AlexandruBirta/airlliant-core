@@ -14,6 +14,8 @@ import ro.unibuc.fmi.airlliantmodel.entity.User;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiException;
 import ro.unibuc.fmi.airlliantmodel.exception.ExceptionStatus;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 
 @Slf4j
 @Service
@@ -29,16 +31,21 @@ public class TicketService {
     @Transactional
     public void createTicket(Ticket ticket, Long userId, Long flightId) {
 
+        int min = 1;
+        int max = 100;
+
         User user = userRepository.findById(userId).orElseThrow(() -> new ApiException(ExceptionStatus.USER_NOT_FOUND, String.valueOf(userId)));
         Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new ApiException(ExceptionStatus.FLIGHT_NOT_FOUND, String.valueOf(flightId)));
-        String seat = ticket.getSeat();
+        String seatRow = ticket.getSeatRow();
+        String seatNumber = ticket.getSeatNumber();
 
-        if (ticketRepository.existsTicketBySeat(seat)) {
-            throw new ApiException(ExceptionStatus.TICKET_ALREADY_EXISTS, String.valueOf(userId), String.valueOf(flightId), seat);
+        if (ticketRepository.existsTicketByFlightAndSeatRowAndSeatNumber(flight, seatRow, seatNumber)) {
+            throw new ApiException(ExceptionStatus.TICKET_ALREADY_EXISTS, String.valueOf(userId), String.valueOf(flightId), seatRow, seatNumber);
         }
 
         ticket.setUser(user);
         ticket.setFlight(flight);
+        ticket.setGate("G" + (ThreadLocalRandom.current().nextInt(min, max)));
 
         airlliantQuartzService.addTicket(ticket);
 
