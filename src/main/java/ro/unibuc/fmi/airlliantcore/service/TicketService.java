@@ -14,6 +14,7 @@ import ro.unibuc.fmi.airlliantmodel.entity.User;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiException;
 import ro.unibuc.fmi.airlliantmodel.exception.ExceptionStatus;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -38,6 +39,10 @@ public class TicketService {
         Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new ApiException(ExceptionStatus.FLIGHT_NOT_FOUND, String.valueOf(flightId)));
         String seatRow = ticket.getSeatRow();
         String seatNumber = ticket.getSeatNumber();
+
+        if (flight.getDepartureDate().isBefore(LocalDateTime.now())) {
+            throw  new ApiException(ExceptionStatus.FLIGHT_ALREADY_DEPARTED, String.valueOf(flightId), flight.getDepartureDate().toString());
+        }
 
         if (ticketRepository.existsTicketByFlightAndSeatRowAndSeatNumber(flight, seatRow, seatNumber)) {
             throw new ApiException(ExceptionStatus.TICKET_ALREADY_EXISTS, String.valueOf(userId), String.valueOf(flightId), seatRow, seatNumber);
