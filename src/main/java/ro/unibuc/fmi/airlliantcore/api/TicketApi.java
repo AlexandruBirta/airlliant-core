@@ -18,6 +18,7 @@ import ro.unibuc.fmi.airlliantmodel.exception.ApiError;
 
 @Tag(name = "Tickets", description = "the tickets API")
 @Validated
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/airlliant/v1")
 public interface TicketApi {
 

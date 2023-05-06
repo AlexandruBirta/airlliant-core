@@ -20,6 +20,7 @@ import javax.validation.Valid;
 
 @Tag(name = "Flights", description = "the flights API")
 @Validated
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/airlliant/v1")
 public interface FlightApi {
 
