@@ -10,6 +10,7 @@ import ro.unibuc.fmi.airlliantcore.service.FlightService;
 import ro.unibuc.fmi.airlliantmodel.entity.Flight;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -26,6 +27,11 @@ public class FlightController implements FlightApi {
     @Override
     public void deleteFlight(@PathVariable("id") Long id) {
         flightService.removeFlight(id);
+    }
+
+    @Override
+    public List<Flight> getAllFlights() {
+        return flightService.getAllFlights();
     }
 
     @Override

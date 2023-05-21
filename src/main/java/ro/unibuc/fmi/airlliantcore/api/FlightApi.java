@@ -16,6 +16,7 @@ import ro.unibuc.fmi.airlliantmodel.entity.Flight;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiError;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Tag(name = "Flights", description = "the flights API")
@@ -54,6 +55,15 @@ public interface FlightApi {
             produces = {"application/json"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteFlight(@Parameter(description = "id of flight that needs to be removed", required = true) @PathVariable("id") Long id);
+
+    @Operation(summary = "Get flights", operationId = "getAllFlights", tags = {"Flights"})
+    @Parameter(name = "Correlation-Id", description = "Correlation-Id for logging purposes", in = ParameterIn.HEADER, schema = @Schema(type = "string", format = "uuid"))
+    @Parameter(name = "Origin-Application-Name", description = "Application of origin", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    @ApiResponse(responseCode = "200", description = "Successful operation")
+    @GetMapping(value = "/flights",
+            produces = {"application/json"})
+    @ResponseStatus(HttpStatus.OK)
+    List<Flight> getAllFlights();
 
 
 }

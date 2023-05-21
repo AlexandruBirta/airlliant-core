@@ -10,6 +10,8 @@ import ro.unibuc.fmi.airlliantmodel.entity.Flight;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiException;
 import ro.unibuc.fmi.airlliantmodel.exception.ExceptionStatus;
 
+import java.util.List;
+
 
 @Slf4j
 @Service
@@ -45,6 +47,10 @@ public class FlightService {
 
     public Flight getFlight(Long id) {
         return flightRepository.findById(id).orElseThrow(() -> new ApiException(ExceptionStatus.FLIGHT_NOT_FOUND, String.valueOf(id)));
+    }
+
+    public List<Flight> getAllFlights() {
+        return flightRepository.findAll();
     }
 
 }
