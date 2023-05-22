@@ -10,6 +10,8 @@ import ro.unibuc.fmi.airlliantcore.service.FlightService;
 import ro.unibuc.fmi.airlliantmodel.entity.Flight;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -32,6 +34,27 @@ public class FlightController implements FlightApi {
     @Override
     public List<Flight> getAllFlights() {
         return flightService.getAllFlights();
+    }
+
+    @Override
+    public List<Flight> searchFlights(
+            String fromAirport,
+            String toAirport,
+            LocalDateTime departure,
+            LocalDateTime arrival,
+            Boolean roundTrip,
+            BigDecimal minPrice,
+            BigDecimal maxPrice
+    ) {
+        return flightService.searchFlights(
+                fromAirport,
+                toAirport,
+                departure,
+                arrival,
+                roundTrip,
+                minPrice,
+                maxPrice
+        );
     }
 
     @Override

@@ -10,6 +10,9 @@ import ro.unibuc.fmi.airlliantmodel.entity.Flight;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiException;
 import ro.unibuc.fmi.airlliantmodel.exception.ExceptionStatus;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -51,6 +54,67 @@ public class FlightService {
 
     public List<Flight> getAllFlights() {
         return flightRepository.findAll();
+    }
+
+    public List<Flight> searchFlights(
+            String fromAirport,
+            String toAirport,
+            LocalDateTime departure,
+            LocalDateTime arrival,
+            Boolean roundTrip,
+            BigDecimal minPrice,
+            BigDecimal maxPrice
+    ) {
+
+        departure = departure.minusDays(1);
+        arrival = arrival.plusDays(1);
+
+        if (minPrice != null && maxPrice != null) {
+            return flightRepository.findAllByFromAirportAndToAirportAndDepartureDateAfterAndArrivalDateBeforeAndRoundTripAndPriceBetween(
+                    fromAirport,
+                    toAirport,
+                    departure,
+                    arrival,
+                    roundTrip,
+                    minPrice,
+                    maxPrice
+            );
+        }
+
+        if (minPrice != null && maxPrice == null) {
+            return flightRepository.findAllByFromAirportAndToAirportAndDepartureDateAfterAndArrivalDateBeforeAndRoundTripAndPriceIsGreaterThanEqual(
+                    fromAirport,
+                    toAirport,
+                    departure,
+                    arrival,
+                    roundTrip,
+                    minPrice
+            );
+        }
+
+        if (minPrice == null && maxPrice != null) {
+            return flightRepository.findAllByFromAirportAndToAirportAndDepartureDateAfterAndArrivalDateBeforeAndRoundTripAndPriceIsLessThanEqual(
+                    fromAirport,
+                    toAirport,
+                    departure,
+                    arrival,
+                    roundTrip,
+                    maxPrice
+            );
+        }
+
+        if (minPrice == null && maxPrice == null) {
+            return flightRepository.findAllByFromAirportAndToAirportAndDepartureDateAfterAndArrivalDateBeforeAndRoundTrip(
+                    fromAirport,
+                    toAirport,
+                    departure,
+                    arrival,
+                    roundTrip
+            );
+        }
+
+        return Collections.emptyList();
+
     }
 
 }
