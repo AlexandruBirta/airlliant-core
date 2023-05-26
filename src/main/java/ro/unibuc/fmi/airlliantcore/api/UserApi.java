@@ -61,12 +61,12 @@ public interface UserApi {
     @Parameter(name = "Origin-Application-Name", description = "Application of origin", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
     @ApiResponse(responseCode = "201", description = "Successful operation")
     @ApiResponse(responseCode = "400", description = "Ticket already exists", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ApiError.class))))
-    @PostMapping(value = "/users/{userId}/flights/{flightId}/tickets",
+    @PostMapping(value = "/users/{email}/flights/{flightId}/tickets",
             produces = {"application/json"},
             consumes = {"application/json"})
     @ResponseStatus(HttpStatus.CREATED)
     void createTicket(@Parameter(description = "Created ticket object", required = true) @Valid @RequestBody Ticket ticket,
-                      @Parameter(description = "ID of user", required = true) @PathVariable("userId") Long userId,
+                      @Parameter(description = "Email of user", required = true) @PathVariable("email") String email,
                       @Parameter(description = "ID of flight", required = true) @PathVariable("flightId") Long flightId
     );
 

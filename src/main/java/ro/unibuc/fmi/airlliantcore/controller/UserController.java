@@ -37,8 +37,8 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public void createTicket(@Valid @RequestBody Ticket ticket, Long userId, Long flightId) {
-        ticketService.createTicket(ticket, userId, flightId);
+    public void createTicket(@Valid @RequestBody Ticket ticket, String email, Long flightId) {
+        ticketService.createTicket(ticket, email, flightId);
     }
 
 

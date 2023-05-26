@@ -30,12 +30,12 @@ public class TicketService {
     private final FlightRepository flightRepository;
 
     @Transactional
-    public void createTicket(Ticket ticket, Long userId, Long flightId) {
+    public void createTicket(Ticket ticket, String email, Long flightId) {
 
         int min = 1;
         int max = 100;
 
-        User user = userRepository.findById(userId).orElseThrow(() -> new ApiException(ExceptionStatus.USER_NOT_FOUND, String.valueOf(userId)));
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new ApiException(ExceptionStatus.USER_NOT_FOUND_BY_EMAIL, email));
         Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new ApiException(ExceptionStatus.FLIGHT_NOT_FOUND, String.valueOf(flightId)));
         String seatRow = ticket.getSeatRow();
         String seatNumber = ticket.getSeatNumber();
@@ -45,7 +45,7 @@ public class TicketService {
         }
 
         if (ticketRepository.existsTicketByFlightAndSeatRowAndSeatNumber(flight, seatRow, seatNumber)) {
-            throw new ApiException(ExceptionStatus.TICKET_ALREADY_EXISTS, String.valueOf(userId), String.valueOf(flightId), seatRow, seatNumber);
+            throw new ApiException(ExceptionStatus.TICKET_ALREADY_EXISTS_FOR_EMAIL, email, String.valueOf(flightId), seatRow, seatNumber);
         }
 
         ticket.setUser(user);
