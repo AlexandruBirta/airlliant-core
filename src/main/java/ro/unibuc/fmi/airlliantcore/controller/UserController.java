@@ -12,6 +12,7 @@ import ro.unibuc.fmi.airlliantmodel.entity.Ticket;
 import ro.unibuc.fmi.airlliantmodel.entity.User;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -39,6 +40,11 @@ public class UserController implements UserApi {
     @Override
     public void createTicket(@Valid @RequestBody Ticket ticket, String email, Long flightId) {
         ticketService.createTicket(ticket, email, flightId);
+    }
+
+    @Override
+    public List<Ticket> getUserTickets(String email) {
+        return ticketService.getUserTickets(email);
     }
 
 

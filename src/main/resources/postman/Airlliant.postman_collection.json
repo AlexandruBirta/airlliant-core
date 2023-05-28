@@ -1,1060 +1,1113 @@
 {
-	"info": {
-		"_postman_id": "68604f71-67f5-4345-aa86-3705302fb5ea",
-		"name": "Airlliant",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "15862032"
-	},
-	"item": [
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Create User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\":\"Alexandru\",\r\n    \"lastName\":\"Birta\",\r\n    \"email\":\"alexbirta2011@gmail.com\",\r\n    \"isNotifiable\": true\r\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Ticket",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"userId\", \"1\");\r",
-									"pm.globals.set(\"flightId\", \"1\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"userId\");\r",
-									"pm.globals.unset(\"flightId\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"seatRow\":\"seatRowA\",\r\n    \"seatNumber\":\"seat1\"\r\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{userId}}/flights/{{flightId}}/tickets",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"users",
-								"{{userId}}",
-								"flights",
-								"{{flightId}}",
-								"tickets"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User By Id",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"id\", \"1\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"userId\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{id}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"users",
-								"{{id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete User",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"id\", \"1\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"userId\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{id}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"users",
-								"{{id}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Ticket",
-			"item": [
-				{
-					"name": "Get Ticket By Id",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"id\", \"2\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"userId\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/tickets/{{id}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"tickets",
-								"{{id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Ticket",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"id\", \"1\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"userId\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{id}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"users",
-								"{{id}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Flight",
-			"item": [
-				{
-					"name": "Create Flight",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"fromAirport\": \"LHR\",\r\n  \"fromCountry\": \"UK\",\r\n  \"toAirport\": \"MDR\",\r\n  \"toCountry\": \"Spain\",\r\n  \"flightCompany\": \"Jet Air\",\r\n  \"departureDate\": \"2023-07-03T23:59:59\",\r\n  \"arrivalDate\": \"2023-07-04T02:59:59\",\r\n  \"roundTrip\": true,\r\n  \"price\": 120.59,\r\n  \"seats\": {\r\n    \"seatRowA\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowB\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowC\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowD\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowE\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowF\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    }\r\n  }\r\n}"
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Flight By Id",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"id\", \"1\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"id\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights/{{id}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights",
-								"{{id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Flights",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights/all",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Search Flights All Params",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"fromAirport\", \"LHR\");\r",
-									"pm.globals.set(\"toAirport\", \"MDR\");\r",
-									"pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
-									"pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
-									"pm.globals.set(\"roundTrip\", \"true\");\r",
-									"pm.globals.set(\"minPrice\", \"50\");\r",
-									"pm.globals.set(\"maxPrice\", \"130\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"fromAirport\");\r",
-									"pm.globals.unset(\"toAirport\");\r",
-									"pm.globals.unset(\"departure\");\r",
-									"pm.globals.unset(\"arrival\");\r",
-									"pm.globals.unset(\"roundTrip\");\r",
-									"pm.globals.unset(\"minPrice\");\r",
-									"pm.globals.unset(\"maxPrice\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights"
-							],
-							"query": [
-								{
-									"key": "fromAirport",
-									"value": "{{fromAirport}}"
-								},
-								{
-									"key": "toAirport",
-									"value": "{{toAirport}}"
-								},
-								{
-									"key": "departure",
-									"value": "{{departure}}"
-								},
-								{
-									"key": "arrival",
-									"value": "{{arrival}}"
-								},
-								{
-									"key": "roundTrip",
-									"value": "{{roundTrip}}"
-								},
-								{
-									"key": "minPrice",
-									"value": "{{minPrice}}"
-								},
-								{
-									"key": "maxPrice",
-									"value": "{{maxPrice}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Search Flights Min Price",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"fromAirport\", \"LHR\");\r",
-									"pm.globals.set(\"toAirport\", \"MDR\");\r",
-									"pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
-									"pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
-									"pm.globals.set(\"roundTrip\", \"true\");\r",
-									"pm.globals.set(\"minPrice\", \"50\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"fromAirport\");\r",
-									"pm.globals.unset(\"toAirport\");\r",
-									"pm.globals.unset(\"departure\");\r",
-									"pm.globals.unset(\"arrival\");\r",
-									"pm.globals.unset(\"roundTrip\");\r",
-									"pm.globals.unset(\"minPrice\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}&minPrice={{minPrice}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights"
-							],
-							"query": [
-								{
-									"key": "fromAirport",
-									"value": "{{fromAirport}}"
-								},
-								{
-									"key": "toAirport",
-									"value": "{{toAirport}}"
-								},
-								{
-									"key": "departure",
-									"value": "{{departure}}"
-								},
-								{
-									"key": "arrival",
-									"value": "{{arrival}}"
-								},
-								{
-									"key": "roundTrip",
-									"value": "{{roundTrip}}"
-								},
-								{
-									"key": "minPrice",
-									"value": "{{minPrice}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Search Flights Max Price",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"fromAirport\", \"LHR\");\r",
-									"pm.globals.set(\"toAirport\", \"MDR\");\r",
-									"pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
-									"pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
-									"pm.globals.set(\"roundTrip\", \"true\");\r",
-									"pm.globals.set(\"maxPrice\", \"130\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"fromAirport\");\r",
-									"pm.globals.unset(\"toAirport\");\r",
-									"pm.globals.unset(\"departure\");\r",
-									"pm.globals.unset(\"arrival\");\r",
-									"pm.globals.unset(\"roundTrip\");\r",
-									"pm.globals.unset(\"maxPrice\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}&maxPrice={{maxPrice}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights"
-							],
-							"query": [
-								{
-									"key": "fromAirport",
-									"value": "{{fromAirport}}"
-								},
-								{
-									"key": "toAirport",
-									"value": "{{toAirport}}"
-								},
-								{
-									"key": "departure",
-									"value": "{{departure}}"
-								},
-								{
-									"key": "arrival",
-									"value": "{{arrival}}"
-								},
-								{
-									"key": "roundTrip",
-									"value": "{{roundTrip}}"
-								},
-								{
-									"key": "maxPrice",
-									"value": "{{maxPrice}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Search Flights No Price",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"fromAirport\", \"LHR\");\r",
-									"pm.globals.set(\"toAirport\", \"MDR\");\r",
-									"pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
-									"pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
-									"pm.globals.set(\"roundTrip\", \"true\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"fromAirport\");\r",
-									"pm.globals.unset(\"toAirport\");\r",
-									"pm.globals.unset(\"departure\");\r",
-									"pm.globals.unset(\"arrival\");\r",
-									"pm.globals.unset(\"roundTrip\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights"
-							],
-							"query": [
-								{
-									"key": "fromAirport",
-									"value": "{{fromAirport}}"
-								},
-								{
-									"key": "toAirport",
-									"value": "{{toAirport}}"
-								},
-								{
-									"key": "departure",
-									"value": "{{departure}}"
-								},
-								{
-									"key": "arrival",
-									"value": "{{arrival}}"
-								},
-								{
-									"key": "roundTrip",
-									"value": "{{roundTrip}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Flight",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.globals.set(\"id\", \"1\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.globals.unset(\"userId\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"url": {
-							"raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights/{{id}}",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"{{apiEndpoint}}",
-								"flights",
-								"{{id}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Keycloak Test",
-			"item": [
-				{
-					"name": "Get Token With Client Credentials",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "client_id",
-									"value": "admin-cli",
-									"type": "text"
-								},
-								{
-									"key": "grant_type",
-									"value": "password",
-									"type": "text"
-								},
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "admin",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/realms/master/protocol/openid-connect/token",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"realms",
-								"master",
-								"protocol",
-								"openid-connect",
-								"token"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add User",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJZb0hNcjdUTTJmYmhRNTJSV05fUFlkcXRRTnVyMEtnLUFKUml3SXNnZHh3In0.eyJleHAiOjE2ODMzODc5OTMsImlhdCI6MTY4MzM4NzkzMywianRpIjoiNDBjZjg5OGYtYTI0NS00YThhLWEzMmEtMWI2OTdkYWNmODFjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDkwL3JlYWxtcy9tYXN0ZXIiLCJzdWIiOiJjMjA4MzQ5Yi00MmJjLTQ4OWItYTQ0NC1hN2YzOGRlNTg2ZWMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhZG1pbi1jbGkiLCJzZXNzaW9uX3N0YXRlIjoiN2JiOWRjNzQtYzNiYS00NTg5LTg3ZmYtMDUyODY2OGI4ZDBkIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjQyMDAiXSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiN2JiOWRjNzQtYzNiYS00NTg5LTg3ZmYtMDUyODY2OGI4ZDBkIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.ZKJKeRW6_JyjLOsCp0EGOijOBsHCWNKUUImnE3L9jpncp_41Qcv66gSbVgHiIUUVqqMR_qFEzy_wRvYc8b48BDdivCH8vZkTNQiDiF0YbnqmTTuk1QqNBCY4uIPndRCJXhPjDaocs3fVbm22wxGXs5RiYaoPhVAE7ijrX0IJ-5FBXrhPE8cLr_qBSNBZ1Vq7A6UeIcY4WpMu5DjrPOO7oKIDY3eucm-XDo7OvElVzncaltQLVqVAbnQhTjTuwUZ325uTbcFgovLVm-_M6AF5mA7LKTaI9cK6tul7Qmu2HIULaXXKua34XKKnEviQv8KUBb6QT0zhs65bfr4dQVJdDg",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"enabled\": true,\r\n    \"username\": \"test2\",\r\n    \"email\": \"test2@email.com\",\r\n    \"firstName\": \"tester\",\r\n    \"lastName\": \"tests\",\r\n    \"credentials\": [\r\n        {\r\n            \"type\": \"password\",\r\n            \"value\": \"test\",\r\n            \"temporary\": false\r\n        }\r\n    ],\r\n    \"requiredActions\": [],\r\n    \"groups\": [],\r\n    \"attributes\": {\r\n        \"locale\": [\r\n            \"en\"\r\n        ]\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/admin/realms/Airlliant/users",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"admin",
-								"realms",
-								"Airlliant",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Token Airllliant",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "client_id",
-									"value": "airlliant-client",
-									"type": "text"
-								},
-								{
-									"key": "grant_type",
-									"value": "password",
-									"type": "text"
-								},
-								{
-									"key": "username",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "client_secret",
-									"value": "z1ZOfMfmJF9mnT7FZNDXvZKrgxy5sA9x",
-									"type": "text",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "http://{{host}}:{{port}}/realms/Airlliant/protocol/openid-connect/token",
-							"protocol": "http",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"realms",
-								"Airlliant",
-								"protocol",
-								"openid-connect",
-								"token"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"auth": {
-		"type": "basic",
-		"basic": [
-			{
-				"key": "password",
-				"value": "{{password}}",
-				"type": "string"
-			},
-			{
-				"key": "username",
-				"value": "{{user}}",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	]
+  "info": {
+    "_postman_id": "68604f71-67f5-4345-aa86-3705302fb5ea",
+    "name": "Airlliant",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15862032"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\":\"Alexandru\",\r\n    \"lastName\":\"Birta\",\r\n    \"email\":\"alexbirta2011@gmail.com\",\r\n    \"isNotifiable\": true\r\n}"
+            },
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Ticket",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"userId\", \"1\");\r",
+                  "pm.globals.set(\"flightId\", \"1\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"userId\");\r",
+                  "pm.globals.unset(\"flightId\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"seatRow\":\"seatRowA\",\r\n    \"seatNumber\":\"seat1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{userId}}/flights/{{flightId}}/tickets",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "users",
+                "{{userId}}",
+                "flights",
+                "{{flightId}}",
+                "tickets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User By Id",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"id\", \"1\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"userId\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{id}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "users",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Tickets",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"email\", \"alexbirta2011@gmail.com\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"email\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{email}}/tickets",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "users",
+                "{{email}}",
+                "tickets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"id\", \"1\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"userId\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{id}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "users",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ticket",
+      "item": [
+        {
+          "name": "Get Ticket By Id",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"id\", \"2\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"userId\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/tickets/{{id}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "tickets",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Ticket",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"id\", \"1\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"userId\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/users/{{id}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "users",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Flight",
+      "item": [
+        {
+          "name": "Create Flight",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"fromAirport\": \"LHR\",\r\n  \"fromCountry\": \"UK\",\r\n  \"toAirport\": \"MDR\",\r\n  \"toCountry\": \"Spain\",\r\n  \"flightCompany\": \"Jet Air\",\r\n  \"departureDate\": \"2023-07-03T23:59:59\",\r\n  \"arrivalDate\": \"2023-07-04T02:59:59\",\r\n  \"roundTrip\": true,\r\n  \"price\": 120.59,\r\n  \"seats\": {\r\n    \"seatRowA\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowB\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowC\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowD\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowE\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    },\r\n    \"seatRowF\": {\r\n      \"seat1\": false,\r\n      \"seat2\": false,\r\n      \"seat3\": false,\r\n      \"seat4\": false,\r\n      \"seat5\": false,\r\n      \"seat6\": false,\r\n      \"seat7\": false,\r\n      \"seat8\": false,\r\n      \"seat9\": false,\r\n      \"seat10\": false,\r\n      \"seat11\": false,\r\n      \"seat12\": false,\r\n      \"seat13\": false,\r\n      \"seat14\": false,\r\n      \"seat15\": false,\r\n      \"seat16\": false,\r\n      \"seat17\": false,\r\n      \"seat18\": false,\r\n      \"seat19\": false,\r\n      \"seat20\": false,\r\n      \"seat21\": false,\r\n      \"seat22\": false,\r\n      \"seat23\": false\r\n    }\r\n  }\r\n}"
+            },
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Flight By Id",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"id\", \"1\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"id\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights/{{id}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Flights",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights/all",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Flights All Params",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"fromAirport\", \"LHR\");\r",
+                  "pm.globals.set(\"toAirport\", \"MDR\");\r",
+                  "pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
+                  "pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
+                  "pm.globals.set(\"roundTrip\", \"true\");\r",
+                  "pm.globals.set(\"minPrice\", \"50\");\r",
+                  "pm.globals.set(\"maxPrice\", \"130\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"fromAirport\");\r",
+                  "pm.globals.unset(\"toAirport\");\r",
+                  "pm.globals.unset(\"departure\");\r",
+                  "pm.globals.unset(\"arrival\");\r",
+                  "pm.globals.unset(\"roundTrip\");\r",
+                  "pm.globals.unset(\"minPrice\");\r",
+                  "pm.globals.unset(\"maxPrice\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}&minPrice={{minPrice}}&maxPrice={{maxPrice}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights"
+              ],
+              "query": [
+                {
+                  "key": "fromAirport",
+                  "value": "{{fromAirport}}"
+                },
+                {
+                  "key": "toAirport",
+                  "value": "{{toAirport}}"
+                },
+                {
+                  "key": "departure",
+                  "value": "{{departure}}"
+                },
+                {
+                  "key": "arrival",
+                  "value": "{{arrival}}"
+                },
+                {
+                  "key": "roundTrip",
+                  "value": "{{roundTrip}}"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "{{minPrice}}"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "{{maxPrice}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Flights Min Price",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"fromAirport\", \"LHR\");\r",
+                  "pm.globals.set(\"toAirport\", \"MDR\");\r",
+                  "pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
+                  "pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
+                  "pm.globals.set(\"roundTrip\", \"true\");\r",
+                  "pm.globals.set(\"minPrice\", \"50\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"fromAirport\");\r",
+                  "pm.globals.unset(\"toAirport\");\r",
+                  "pm.globals.unset(\"departure\");\r",
+                  "pm.globals.unset(\"arrival\");\r",
+                  "pm.globals.unset(\"roundTrip\");\r",
+                  "pm.globals.unset(\"minPrice\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}&minPrice={{minPrice}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights"
+              ],
+              "query": [
+                {
+                  "key": "fromAirport",
+                  "value": "{{fromAirport}}"
+                },
+                {
+                  "key": "toAirport",
+                  "value": "{{toAirport}}"
+                },
+                {
+                  "key": "departure",
+                  "value": "{{departure}}"
+                },
+                {
+                  "key": "arrival",
+                  "value": "{{arrival}}"
+                },
+                {
+                  "key": "roundTrip",
+                  "value": "{{roundTrip}}"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "{{minPrice}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Flights Max Price",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"fromAirport\", \"LHR\");\r",
+                  "pm.globals.set(\"toAirport\", \"MDR\");\r",
+                  "pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
+                  "pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
+                  "pm.globals.set(\"roundTrip\", \"true\");\r",
+                  "pm.globals.set(\"maxPrice\", \"130\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"fromAirport\");\r",
+                  "pm.globals.unset(\"toAirport\");\r",
+                  "pm.globals.unset(\"departure\");\r",
+                  "pm.globals.unset(\"arrival\");\r",
+                  "pm.globals.unset(\"roundTrip\");\r",
+                  "pm.globals.unset(\"maxPrice\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}&maxPrice={{maxPrice}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights"
+              ],
+              "query": [
+                {
+                  "key": "fromAirport",
+                  "value": "{{fromAirport}}"
+                },
+                {
+                  "key": "toAirport",
+                  "value": "{{toAirport}}"
+                },
+                {
+                  "key": "departure",
+                  "value": "{{departure}}"
+                },
+                {
+                  "key": "arrival",
+                  "value": "{{arrival}}"
+                },
+                {
+                  "key": "roundTrip",
+                  "value": "{{roundTrip}}"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "{{maxPrice}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Flights No Price",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"fromAirport\", \"LHR\");\r",
+                  "pm.globals.set(\"toAirport\", \"MDR\");\r",
+                  "pm.globals.set(\"departure\", \"2023-07-03T23:59:59\");\r",
+                  "pm.globals.set(\"arrival\", \"2023-07-04T02:59:59\");\r",
+                  "pm.globals.set(\"roundTrip\", \"true\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"fromAirport\");\r",
+                  "pm.globals.unset(\"toAirport\");\r",
+                  "pm.globals.unset(\"departure\");\r",
+                  "pm.globals.unset(\"arrival\");\r",
+                  "pm.globals.unset(\"roundTrip\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights?fromAirport={{fromAirport}}&toAirport={{toAirport}}&departure={{departure}}&arrival={{arrival}}&roundTrip={{roundTrip}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights"
+              ],
+              "query": [
+                {
+                  "key": "fromAirport",
+                  "value": "{{fromAirport}}"
+                },
+                {
+                  "key": "toAirport",
+                  "value": "{{toAirport}}"
+                },
+                {
+                  "key": "departure",
+                  "value": "{{departure}}"
+                },
+                {
+                  "key": "arrival",
+                  "value": "{{arrival}}"
+                },
+                {
+                  "key": "roundTrip",
+                  "value": "{{roundTrip}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Flight",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.globals.set(\"id\", \"1\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.globals.unset(\"userId\");"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "http://{{host}}:{{port}}/{{apiEndpoint}}/flights/{{id}}",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "{{apiEndpoint}}",
+                "flights",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Keycloak Test",
+      "item": [
+        {
+          "name": "Get Token With Client Credentials",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "admin-cli",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "admin",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "admin",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://{{host}}:{{port}}/realms/master/protocol/openid-connect/token",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "realms",
+                "master",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJZb0hNcjdUTTJmYmhRNTJSV05fUFlkcXRRTnVyMEtnLUFKUml3SXNnZHh3In0.eyJleHAiOjE2ODMzODc5OTMsImlhdCI6MTY4MzM4NzkzMywianRpIjoiNDBjZjg5OGYtYTI0NS00YThhLWEzMmEtMWI2OTdkYWNmODFjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDkwL3JlYWxtcy9tYXN0ZXIiLCJzdWIiOiJjMjA4MzQ5Yi00MmJjLTQ4OWItYTQ0NC1hN2YzOGRlNTg2ZWMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhZG1pbi1jbGkiLCJzZXNzaW9uX3N0YXRlIjoiN2JiOWRjNzQtYzNiYS00NTg5LTg3ZmYtMDUyODY2OGI4ZDBkIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjQyMDAiXSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiN2JiOWRjNzQtYzNiYS00NTg5LTg3ZmYtMDUyODY2OGI4ZDBkIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.ZKJKeRW6_JyjLOsCp0EGOijOBsHCWNKUUImnE3L9jpncp_41Qcv66gSbVgHiIUUVqqMR_qFEzy_wRvYc8b48BDdivCH8vZkTNQiDiF0YbnqmTTuk1QqNBCY4uIPndRCJXhPjDaocs3fVbm22wxGXs5RiYaoPhVAE7ijrX0IJ-5FBXrhPE8cLr_qBSNBZ1Vq7A6UeIcY4WpMu5DjrPOO7oKIDY3eucm-XDo7OvElVzncaltQLVqVAbnQhTjTuwUZ325uTbcFgovLVm-_M6AF5mA7LKTaI9cK6tul7Qmu2HIULaXXKua34XKKnEviQv8KUBb6QT0zhs65bfr4dQVJdDg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"enabled\": true,\r\n    \"username\": \"test2\",\r\n    \"email\": \"test2@email.com\",\r\n    \"firstName\": \"tester\",\r\n    \"lastName\": \"tests\",\r\n    \"credentials\": [\r\n        {\r\n            \"type\": \"password\",\r\n            \"value\": \"test\",\r\n            \"temporary\": false\r\n        }\r\n    ],\r\n    \"requiredActions\": [],\r\n    \"groups\": [],\r\n    \"attributes\": {\r\n        \"locale\": [\r\n            \"en\"\r\n        ]\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{host}}:{{port}}/admin/realms/Airlliant/users",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "admin",
+                "realms",
+                "Airlliant",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Token Airllliant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "airlliant-client",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "test",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "test",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "z1ZOfMfmJF9mnT7FZNDXvZKrgxy5sA9x",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://{{host}}:{{port}}/realms/Airlliant/protocol/openid-connect/token",
+              "protocol": "http",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "realms",
+                "Airlliant",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "password",
+        "value": "{{password}}",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "{{user}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
 }

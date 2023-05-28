@@ -17,6 +17,7 @@ import ro.unibuc.fmi.airlliantmodel.entity.User;
 import ro.unibuc.fmi.airlliantmodel.exception.ApiError;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Tag(name = "Users", description = "the users API")
@@ -70,5 +71,13 @@ public interface UserApi {
                       @Parameter(description = "ID of flight", required = true) @PathVariable("flightId") Long flightId
     );
 
+    @Operation(summary = "Get user tickets", operationId = "getUserTickets", tags = {"Tickets", "Users"})
+    @Parameter(name = "Correlation-Id", description = "Correlation-Id for logging purposes", in = ParameterIn.HEADER, schema = @Schema(type = "string", format = "uuid"))
+    @Parameter(name = "Origin-Application-Name", description = "Application of origin", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    @ApiResponse(responseCode = "200", description = "Successful operation")
+    @GetMapping(value = "/users/{email}/tickets",
+            produces = {"application/json"})
+    @ResponseStatus(HttpStatus.OK)
+    List<Ticket> getUserTickets(@Parameter(description = "User email to search tickets by", required = true) @PathVariable("email") String email);
 
 }
