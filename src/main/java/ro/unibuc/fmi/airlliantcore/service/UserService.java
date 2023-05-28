@@ -50,4 +50,14 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new ApiException(ExceptionStatus.USER_NOT_FOUND, String.valueOf(id)));
     }
 
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new ApiException(ExceptionStatus.USER_NOT_FOUND_BY_EMAIL, email));
+    }
+
+    @Transactional
+    public void updateUserIsNotifiable(String email, Boolean isNotifiable) {
+        User userToUpdate = userRepository.findByEmail(email).orElseThrow(() -> new ApiException(ExceptionStatus.USER_NOT_FOUND_BY_EMAIL, email));
+        userToUpdate.setIsNotifiable(isNotifiable);
+    }
+
 }

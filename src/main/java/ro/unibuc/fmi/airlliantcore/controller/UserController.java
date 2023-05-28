@@ -38,6 +38,11 @@ public class UserController implements UserApi {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        return userService.getUserByEmail(email);
+    }
+
+    @Override
     public void createTicket(@Valid @RequestBody Ticket ticket, String email, Long flightId) {
         ticketService.createTicket(ticket, email, flightId);
     }
@@ -45,6 +50,11 @@ public class UserController implements UserApi {
     @Override
     public List<Ticket> getUserTickets(String email) {
         return ticketService.getUserTickets(email);
+    }
+
+    @Override
+    public void updateUserIsNotifiable(String email, Boolean isNotifiable) {
+        userService.updateUserIsNotifiable(email, isNotifiable);
     }
 
 
